@@ -39,6 +39,11 @@ def answer_create(request, question_id):
     board 답변등록
     """
     question = get_object_or_404(Question, pk=question_id)
+    question.answer_set.create(content=request.POST.get('content'),
+                               create_date=timezone.now())
+    return redirect('board:detail', question_id=question.id)
+    #여기서 부터가 뭔가 잘못됨.. 답변등록시 빈칸이면 에러를 나타내는 부분같은데...
+
     if request.method == "POST":
         form = AnswerForm(request.POST)
         if form.is_valid():
