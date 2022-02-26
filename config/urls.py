@@ -20,7 +20,14 @@ from django.contrib import admin
 from django.urls import path, include # include 를 붙여줌으로서 컨피그 에서 보드로 url 을 추출해서 개별 관리
 from board import views
 
+from django.contrib import admin
+from django.urls import include, path
+
+from board import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('board/', include('board.urls')),
+    path('common/', include('common.urls')),
+    path('', views.index, name='index'),  # '/' 에 해당되는 path
 ]

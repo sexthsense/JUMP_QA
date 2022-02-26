@@ -8,7 +8,7 @@ from .models import Question
 
 def index(request):
     """
-    board 목록 출력
+    pybo 목록 출력
     """
     # 입력 파라미터
     page = request.GET.get('page', '1')  # 페이지
@@ -24,10 +24,9 @@ def index(request):
     return render(request, 'board/question_list.html', context)
 
 
-
 def detail(request, question_id):
     """
-    board 내용 출력
+    pybo 내용 출력
     """
     question = get_object_or_404(Question, pk=question_id)
     context = {'question': question}
@@ -36,14 +35,9 @@ def detail(request, question_id):
 
 def answer_create(request, question_id):
     """
-    board 답변등록
+    pybo 답변등록
     """
     question = get_object_or_404(Question, pk=question_id)
-    question.answer_set.create(content=request.POST.get('content'),
-                               create_date=timezone.now())
-    return redirect('board:detail', question_id=question.id)
-    #여기서 부터가 뭔가 잘못됨.. 답변등록시 빈칸이면 에러를 나타내는 부분같은데...
-
     if request.method == "POST":
         form = AnswerForm(request.POST)
         if form.is_valid():
@@ -60,7 +54,7 @@ def answer_create(request, question_id):
 
 def question_create(request):
     """
-    board 질문등록
+    pybo 질문등록
     """
     if request.method == 'POST':
         form = QuestionForm(request.POST)
@@ -73,4 +67,3 @@ def question_create(request):
         form = QuestionForm()
     context = {'form': form}
     return render(request, 'board/question_form.html', context)
-

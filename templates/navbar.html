@@ -8,7 +8,12 @@
     <div class="collapse navbar-collapse flex-grow-0" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item ">
-                <a class="nav-link" href="#">로그인</a>
+                <a class="nav-link" href="#"></a> <!-- 교재하고 깃허브 3-05에서는 삭제되어 있음....... -->
+                {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url 'common:logout' %}">{{ user.username }} (로그아웃)</a>
+                {% else %}
+                <a class="nav-link" href="{% url 'common:login' %}">로그인</a>
+                {% endif %}
             </li>
         </ul>
     </div>
