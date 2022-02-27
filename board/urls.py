@@ -10,4 +10,3 @@ urlpatterns = [
     path('answer/create/<int:question_id>/', views.answer_create, name='answer_create'),
     path('question/create/', views.question_create, name='question_create'),
 ]
-#새로 생성한 파일 url을 별도로 커피그에서 추출해서 개별 관리를 하기 위해서
